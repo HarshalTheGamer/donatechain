@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About DonateChain — architecture, technology stack, and blockchain concepts covered">
+    <title>About | DonateChain</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="about">
+
+    <!-- ═══ NAVBAR ═══ -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <span class="brand-icon">⛓️</span>
+            <span class="brand-text">DonateChain</span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="donate.html" class="nav-link">Donate</a>
+            <a href="campaigns.html" class="nav-link">Campaigns</a>
+            <a href="dao.html" class="nav-link">Governance</a>
+            <a href="history.html" class="nav-link">History</a>
+            <a href="about.html" class="nav-link">About</a>
+        </div>
+        <div class="nav-wallet">
+            <button class="btn-wallet" id="connectBtn">🦊 Connect Wallet</button>
+            <div class="wallet-connected hidden" id="walletInfo">
+                <span class="wallet-badge" id="walletAddress"></span>
+                <span class="network-badge" id="networkBadge"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ MAIN CONTENT ═══ -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">📖 About DonateChain</h1>
+            <p class="page-subtitle">A full-stack decentralized donation system built for transparency and trust</p>
+        </div>
+
+        <!-- Project Overview -->
+        <section class="section">
+            <div class="card animate-in">
+                <h2 class="card-title"><span class="icon">🎯</span> Project Overview</h2>
+                <div style="font-size:0.9rem; color:var(--text-secondary); line-height:1.7;">
+                    <p>DonateChain is a <strong style="color:var(--text-primary);">Decentralized Donation System</strong> that records every donation immutably on the Ethereum blockchain. Traditional donation platforms rely on centralized databases that can be tampered with. With smart contracts:</p>
+                    <ul style="margin:12px 0 12px 20px; list-style:disc;">
+                        <li>Donations are <strong style="color:var(--accent-green);">permanently recorded</strong> — no admin can alter them</li>
+                        <li>Fund releases require <strong style="color:var(--accent-purple);">DAO community votes</strong> — not a single admin's decision</li>
+                        <li>Anyone can <strong style="color:var(--accent-blue);">audit the entire history</strong> on Etherscan without trusting anyone</li>
+                        <li>Campaign documents are stored on <strong style="color:var(--accent-green);">IPFS</strong> — tamper-proof and globally accessible</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture -->
+        <section class="section">
+            <div class="card animate-in" style="animation-delay:0.1s;">
+                <h2 class="card-title"><span class="icon">🏗️</span> System Architecture</h2>
+                <div class="arch-diagram">
+╔══════════════════════════════════════════════════════════════╗
+║              BLOCKCHAIN DONATION SYSTEM ARCHITECTURE          ║
+╠══════════════════════════════════════════════════════════════╣
+║  [LAYER 5 – DATA/STORAGE]    IPFS (Pinata)                   ║
+║  Campaign docs stored off-chain, CID anchored on-chain       ║
+╠══════════════════════════════════════════════════════════════╣
+║  [LAYER 4 – GOVERNANCE]      GovernanceDAO.sol                ║
+║  Token holders vote to approve fund releases                 ║
+║  Proposals → Vote → Execute → releaseFunds()                ║
+╠══════════════════════════════════════════════════════════════╣
+║  [LAYER 3 – APPLICATION]     MetaMask + Web3.js Frontend     ║
+║  6-page DApp: Home, Donate, Campaigns, DAO, History, About   ║
+╠══════════════════════════════════════════════════════════════╣
+║  [LAYER 2 – SCALING]         Polygon (Amoy Testnet)          ║
+║  Same contracts deployable on L2 for lower gas fees          ║
+╠══════════════════════════════════════════════════════════════╣
+║  [LAYER 1 – BASE CHAIN]      Ethereum (Sepolia Testnet)      ║
+║  DonationContract.sol deployed here — immutable ledger       ║
+╠══════════════════════════════════════════════════════════════╣
+║  [LAYER 0 – NETWORK]         P2P Ethereum Node Network       ║
+║  Global nodes validate, propagate, and store blockchain state║
+╚══════════════════════════════════════════════════════════════╝</div>
+            </div>
+        </section>
+
+        <!-- Technology Stack -->
+        <section class="section">
+            <div class="card animate-in" style="animation-delay:0.15s;">
+                <h2 class="card-title"><span class="icon">🛠️</span> Technology Stack</h2>
+                <div class="tech-grid" style="margin-top:12px;">
+                    <div class="tech-item"><span class="tech-icon">📝</span><div><strong>Solidity ^0.8.20</strong><br><span class="text-muted" style="font-size:0.78rem;">Smart Contracts</span></div></div>
+                    <div class="tech-item"><span class="tech-icon">🔧</span><div><strong>Remix IDE</strong><br><span class="text-muted" style="font-size:0.78rem;">Compile & Deploy</span></div></div>
+                    <div class="tech-item"><span class="tech-icon">💎</span><div><strong>Ethereum Sepolia</strong><br><span class="text-muted" style="font-size:0.78rem;">Layer 1 Testnet</span></div></div>
+                    <div class="tech-item"><span class="tech-icon">🦊</span><div><strong>MetaMask</strong><br><span class="text-muted" style="font-size:0.78rem;">Wallet & Signing</span></div></div>
+                    <div class="tech-item"><span class="tech-icon">🌐</span><div><strong>Web3.js v4.5</strong><br><span class="text-muted" style="font-size:0.78rem;">Blockchain ↔ Frontend</span></div></div>
+                    <div class="tech-item"><span class="tech-icon">📦</span><div><strong>IPFS / Pinata</strong><br><span class="text-muted" style="font-size:0.78rem;">Decentralized Storage</span></div></div>
+                    <div class="tech-item"><span class="tech-icon">🗳️</span><div><strong>GovernanceDAO</strong><br><span class="text-muted" style="font-size:0.78rem;">On-chain Voting</span></div></div>
+                    <div class="tech-item"><span class="tech-icon">🔍</span><div><strong>Etherscan</strong><br><span class="text-muted" style="font-size:0.78rem;">Tx Verification</span></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BT Syllabus Mapping -->
+        <section class="section">
+            <div class="card animate-in" style="animation-delay:0.2s;">
+                <h2 class="card-title"><span class="icon">📋</span> Blockchain Concepts Covered</h2>
+                <div class="table-container" style="margin-top:12px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Unit</th>
+                                <th>Concept</th>
+                                <th>Where Used</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="text-purple">I</td><td>Blocks, Hashes, Merkle Trees</td><td>Every donation tx is hashed & chained into blocks</td></tr>
+                            <tr><td class="text-purple">I</td><td>Digital Signatures</td><td>MetaMask signs every donation with donor's private key</td></tr>
+                            <tr><td class="text-blue">II</td><td>Proof of Stake (PoS)</td><td>Ethereum uses PoS after The Merge; Sepolia uses it</td></tr>
+                            <tr><td class="text-blue">II</td><td>Smart Contracts</td><td>DonationContract.sol — core logic handling campaigns & donations</td></tr>
+                            <tr><td class="text-green">III</td><td>Layer 1 (Ethereum)</td><td>Contract deployed on Sepolia — immutable ledger</td></tr>
+                            <tr><td class="text-green">III</td><td>Layer 3 (MetaMask)</td><td>Wallet connects donor to DApp for signing transactions</td></tr>
+                            <tr><td class="text-green">III</td><td>Layer 4 (DAO)</td><td>GovernanceDAO.sol — community votes on fund release</td></tr>
+                            <tr><td class="text-green">III</td><td>Layer 5 (IPFS)</td><td>Campaign docs stored on Pinata IPFS, CID on-chain</td></tr>
+                            <tr><td style="color:var(--accent-red);">IV</td><td>Reentrancy Attack</td><td>nonReentrant modifier + CEI pattern in releaseFunds()</td></tr>
+                            <tr><td style="color:var(--accent-red);">IV</td><td>Integer Overflow</td><td>Solidity ≥0.8.0 has built-in overflow protection</td></tr>
+                            <tr><td style="color:var(--accent-red);">IV</td><td>Access Control</td><td>onlyOwner, onlyOwnerOrDAO modifiers</td></tr>
+                            <tr><td style="color:var(--accent-red);">IV</td><td>Vote Manipulation</td><td>Voting power snapshot at proposal creation (FIX 4)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lab Assignments -->
+        <section class="section">
+            <div class="card animate-in" style="animation-delay:0.25s;">
+                <h2 class="card-title"><span class="icon">📝</span> Lab Assignment Mapping</h2>
+                <div class="table-container" style="margin-top:12px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Assignment</th>
+                                <th>Description</th>
+                                <th>Project Component</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="text-purple"><strong>A1</strong></td><td>Design & deploy a smart contract</td><td>DonationContract.sol + GovernanceDAO.sol on Sepolia</td></tr>
+                            <tr><td class="text-blue"><strong>A2</strong></td><td>Set up Polygon test network</td><td>Same contracts deployable on Polygon Amoy</td></tr>
+                            <tr><td class="text-green"><strong>A3</strong></td><td>Web interface using MetaMask</td><td>6-page frontend with MetaMask donation flow</td></tr>
+                            <tr><td class="text-purple"><strong>A4</strong></td><td>Implement IPFS for file storage</td><td>Pinata IPFS — CID stored on-chain in campaigns</td></tr>
+                            <tr><td class="text-blue"><strong>A5</strong></td><td>Set up basic DAO</td><td>GovernanceDAO.sol — token voting, proposals, execution</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security -->
+        <section class="section">
+            <div class="card animate-in" style="animation-delay:0.3s;">
+                <h2 class="card-title"><span class="icon">🔒</span> Security Measures</h2>
+                <div class="grid-2" style="gap:12px; margin-top:12px;">
+                    <div class="tech-item" style="flex-direction:column; align-items:flex-start; gap:4px;">
+                        <strong>✅ Reentrancy Guard</strong>
+                        <span class="text-muted" style="font-size:0.82rem;">Mutex lock (_locked) prevents re-entrant calls</span>
+                    </div>
+                    <div class="tech-item" style="flex-direction:column; align-items:flex-start; gap:4px;">
+                        <strong>✅ Checks-Effects-Interactions</strong>
+                        <span class="text-muted" style="font-size:0.82rem;">State updated before external calls in releaseFunds()</span>
+                    </div>
+                    <div class="tech-item" style="flex-direction:column; align-items:flex-start; gap:4px;">
+                        <strong>✅ Access Control</strong>
+                        <span class="text-muted" style="font-size:0.82rem;">onlyOwner and onlyOwnerOrDAO modifiers</span>
+                    </div>
+                    <div class="tech-item" style="flex-direction:column; align-items:flex-start; gap:4px;">
+                        <strong>✅ Overflow Protection</strong>
+                        <span class="text-muted" style="font-size:0.82rem;">Solidity ^0.8.20 has built-in safe math</span>
+                    </div>
+                    <div class="tech-item" style="flex-direction:column; align-items:flex-start; gap:4px;">
+                        <strong>✅ Input Validation</strong>
+                        <span class="text-muted" style="font-size:0.82rem;">require() checks on all function inputs</span>
+                    </div>
+                    <div class="tech-item" style="flex-direction:column; align-items:flex-start; gap:4px;">
+                        <strong>✅ Vote Snapshot</strong>
+                        <span class="text-muted" style="font-size:0.82rem;">Voting power frozen at proposal creation (anti-manipulation)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Setup -->
+        <section class="section">
+            <div class="card animate-in" style="animation-delay:0.35s;">
+                <h2 class="card-title"><span class="icon">🚀</span> Quick Setup Guide</h2>
+                <div style="font-size:0.88rem; color:var(--text-secondary); line-height:2;">
+                    <p><strong style="color:var(--accent-purple);">Step 1</strong> — Install MetaMask extension from <a href="https://metamask.io" target="_blank">metamask.io</a></p>
+                    <p><strong style="color:var(--accent-purple);">Step 2</strong> — Get test ETH from <a href="https://sepoliafaucet.com" target="_blank">sepoliafaucet.com</a></p>
+                    <p><strong style="color:var(--accent-purple);">Step 3</strong> — Open <a href="https://remix.ethereum.org" target="_blank">Remix IDE</a> → Compile & Deploy DonationContract.sol</p>
+                    <p><strong style="color:var(--accent-purple);">Step 4</strong> — Deploy GovernanceDAO.sol (pass DonationContract address as arg)</p>
+                    <p><strong style="color:var(--accent-purple);">Step 5</strong> — On DonationContract, call <code style="color:var(--accent-green);">setAuthorizedDAO(daoAddress)</code></p>
+                    <p><strong style="color:var(--accent-purple);">Step 6</strong> — Paste both addresses into <code style="color:var(--accent-green);">frontend/js/config.js</code></p>
+                    <p><strong style="color:var(--accent-purple);">Step 7</strong> — Open <code style="color:var(--accent-green);">frontend/index.html</code> in browser → Done!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- References -->
+        <section class="section">
+            <div class="card animate-in" style="animation-delay:0.4s;">
+                <h2 class="card-title"><span class="icon">📚</span> References</h2>
+                <div style="font-size:0.85rem; line-height:2; color:var(--text-secondary);">
+                    <p>📘 <a href="https://docs.soliditylang.org" target="_blank">Solidity Documentation</a></p>
+                    <p>🔧 <a href="https://remix.ethereum.org" target="_blank">Remix IDE</a></p>
+                    <p>🦊 <a href="https://docs.metamask.io" target="_blank">MetaMask Docs</a></p>
+                    <p>💎 <a href="https://ethereum.org/en/developers/docs" target="_blank">Ethereum Developer Docs</a></p>
+                    <p>🔍 <a href="https://sepolia.etherscan.io" target="_blank">Sepolia Etherscan</a></p>
+                    <p>📦 <a href="https://pinata.cloud" target="_blank">Pinata (IPFS)</a></p>
+                    <p>🌐 <a href="https://docs.web3js.org" target="_blank">Web3.js Documentation</a></p>
+                    <p>🔐 <a href="https://openzeppelin.com/contracts" target="_blank">OpenZeppelin Security Patterns</a></p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer>
+        <p class="footer-brand">⛓️ DonateChain — Blockchain Donation System</p>
+        <p class="footer-sub">Built on Ethereum (Sepolia) | Smart Contracts + DAO Governance + IPFS</p>
+        <p class="footer-tech">T.Y. B.Tech Computer Engineering — Blockchain Technology Lab, Sem 6</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@4.5.0/dist/web3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

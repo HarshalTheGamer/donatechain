@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DAO Governance — Vote on fund release proposals for transparent donation management">
+    <title>DAO Governance | DonateChain</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="dao">
+
+    <!-- ═══ NAVBAR ═══ -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <span class="brand-icon">⛓️</span>
+            <span class="brand-text">DonateChain</span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="donate.html" class="nav-link">Donate</a>
+            <a href="campaigns.html" class="nav-link">Campaigns</a>
+            <a href="dao.html" class="nav-link">Governance</a>
+            <a href="history.html" class="nav-link">History</a>
+            <a href="about.html" class="nav-link">About</a>
+        </div>
+        <div class="nav-wallet">
+            <button class="btn-wallet" id="connectBtn">🦊 Connect Wallet</button>
+            <div class="wallet-connected hidden" id="walletInfo">
+                <span class="wallet-badge" id="walletAddress"></span>
+                <span class="network-badge" id="networkBadge"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ MAIN CONTENT ═══ -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">🗳️ DAO Governance</h1>
+            <p class="page-subtitle">Community-driven fund release via token-weighted voting</p>
+        </div>
+
+        <!-- Token Balance -->
+        <section class="section">
+            <div class="card animate-in" style="max-width:500px; margin:0 auto;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div>
+                        <p class="text-secondary" style="font-size:0.85rem;">Your Governance Tokens</p>
+                        <p style="font-size:1.8rem; font-weight:800;" class="text-purple" id="tokenBalance">—</p>
+                    </div>
+                    <div style="font-size:3rem; opacity:0.3;">🪙</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grant Tokens (DAO Owner Only) -->
+        <section class="section dao-owner-only hidden">
+            <div class="card animate-in" style="max-width:700px; margin:0 auto;">
+                <h2 class="card-title"><span class="icon">🪙</span> Grant Governance Tokens (Admin)</h2>
+                <div class="grid-2" style="gap:12px;">
+                    <div class="form-group">
+                        <label class="form-label">Recipient Address</label>
+                        <input type="text" id="grantAddress" placeholder="0x...">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Amount</label>
+                        <input type="number" id="grantAmount" placeholder="e.g. 100" min="1">
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-full" id="grantTokenBtn">🪙 Grant Tokens</button>
+                <div id="daoStatus" class="status hidden"></div>
+            </div>
+        </section>
+
+        <!-- Create Proposal -->
+        <section class="section">
+            <div class="card animate-in" style="max-width:700px; margin:0 auto; animation-delay:0.1s;">
+                <h2 class="card-title"><span class="icon">📝</span> Create Fund Release Proposal</h2>
+                <p class="text-secondary" style="font-size:0.85rem; margin-bottom:16px;">
+                    Requires governance tokens. Voters' balances are snapshot-frozen at proposal creation.
+                </p>
+
+                <div class="form-group">
+                    <label class="form-label">Campaign to Release Funds For</label>
+                    <select id="daoCampaignSelect">
+                        <option value="">— Connect wallet to load campaigns —</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Proposal Description</label>
+                    <textarea id="proposalDescription" rows="2" placeholder="e.g. Release funds for Education campaign — goal reached"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Voter Addresses (comma-separated)</label>
+                    <textarea id="proposalVoters" rows="2" placeholder="0xAddr1, 0xAddr2, 0xAddr3"></textarea>
+                    <p class="text-muted" style="font-size:0.78rem; margin-top:4px;">
+                        Only addresses with token balances > 0 will receive voting power
+                    </p>
+                </div>
+
+                <button class="btn btn-primary btn-full" id="createProposalBtn">📝 Create Proposal</button>
+                <div id="proposalStatus" class="status hidden"></div>
+            </div>
+        </section>
+
+        <!-- Active Proposals -->
+        <section class="section">
+            <div style="max-width:700px; margin:0 auto;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                    <h2 class="section-title" style="margin-bottom:0;">📋 Proposals</h2>
+                    <button class="btn btn-outline btn-sm" id="refreshBtn">🔄 Refresh</button>
+                </div>
+                <div id="proposalList">
+                    <div class="empty-state">
+                        <div class="icon">👛</div>
+                        <p>Connect wallet to view DAO proposals</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DAO Info -->
+        <section class="section">
+            <div class="card animate-in" style="max-width:700px; margin:0 auto; animation-delay:0.2s;">
+                <h2 class="card-title"><span class="icon">ℹ️</span> DAO Workflow</h2>
+                <div style="font-size:0.88rem; color:var(--text-secondary); line-height:1.8;">
+                    <p><strong>1.</strong> Admin deploys GovernanceDAO with DonationContract address</p>
+                    <p><strong>2.</strong> Admin calls <code style="color:var(--accent-purple);">setAuthorizedDAO(daoAddress)</code> on DonationContract</p>
+                    <p><strong>3.</strong> Admin grants governance tokens to community members</p>
+                    <p><strong>4.</strong> Any token holder creates a proposal (campaign ID + voter list)</p>
+                    <p><strong>5.</strong> Token holders vote FOR or AGAINST within <strong>2 minutes</strong> (lab testing period)</p>
+                    <p><strong>6.</strong> After deadline, anyone calls Execute — if passed, funds auto-release to beneficiary</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer>
+        <p class="footer-brand">⛓️ DonateChain — Blockchain Donation System</p>
+        <p class="footer-sub">Built on Ethereum (Sepolia) | Smart Contracts + DAO Governance + IPFS</p>
+        <p class="footer-tech">T.Y. B.Tech Computer Engineering — Blockchain Technology Lab, Sem 6</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@4.5.0/dist/web3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

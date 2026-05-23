@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View all donation campaigns on the blockchain with real-time progress tracking">
+    <title>Campaigns | DonateChain</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="campaigns">
+
+    <!-- ═══ NAVBAR ═══ -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <span class="brand-icon">⛓️</span>
+            <span class="brand-text">DonateChain</span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="donate.html" class="nav-link">Donate</a>
+            <a href="campaigns.html" class="nav-link">Campaigns</a>
+            <a href="dao.html" class="nav-link">Governance</a>
+            <a href="history.html" class="nav-link">History</a>
+            <a href="about.html" class="nav-link">About</a>
+        </div>
+        <div class="nav-wallet">
+            <button class="btn-wallet" id="connectBtn">🦊 Connect Wallet</button>
+            <div class="wallet-connected hidden" id="walletInfo">
+                <span class="wallet-badge" id="walletAddress"></span>
+                <span class="network-badge" id="networkBadge"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ MAIN CONTENT ═══ -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">📊 Campaign Overview</h1>
+            <p class="page-subtitle">All campaigns are loaded directly from the smart contract on Ethereum Sepolia</p>
+        </div>
+
+        <div style="text-align:right; margin-bottom:16px;">
+            <button class="btn btn-outline btn-sm" id="refreshBtn">🔄 Refresh</button>
+        </div>
+
+        <!-- Campaign Grid (dynamically populated) -->
+        <div id="campaignGrid">
+            <div class="empty-state">
+                <div class="icon">👛</div>
+                <p>Connect your wallet to load campaigns from the blockchain</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer>
+        <p class="footer-brand">⛓️ DonateChain — Blockchain Donation System</p>
+        <p class="footer-sub">Built on Ethereum (Sepolia) | Smart Contracts + DAO Governance + IPFS</p>
+        <p class="footer-tech">T.Y. B.Tech Computer Engineering — Blockchain Technology Lab, Sem 6</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@4.5.0/dist/web3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

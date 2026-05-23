@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Donate ETH to transparent blockchain campaigns via MetaMask">
+    <title>Donate | DonateChain</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="donate">
+
+    <!-- ═══ NAVBAR ═══ -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <span class="brand-icon">⛓️</span>
+            <span class="brand-text">DonateChain</span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="donate.html" class="nav-link">Donate</a>
+            <a href="campaigns.html" class="nav-link">Campaigns</a>
+            <a href="dao.html" class="nav-link">Governance</a>
+            <a href="history.html" class="nav-link">History</a>
+            <a href="about.html" class="nav-link">About</a>
+        </div>
+        <div class="nav-wallet">
+            <button class="btn-wallet" id="connectBtn">🦊 Connect Wallet</button>
+            <div class="wallet-connected hidden" id="walletInfo">
+                <span class="wallet-badge" id="walletAddress"></span>
+                <span class="network-badge" id="networkBadge"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ MAIN CONTENT ═══ -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">❤️ Make a Donation</h1>
+            <p class="page-subtitle">Select a campaign and donate ETH via MetaMask — every transaction is recorded on-chain</p>
+        </div>
+
+        <!-- Donation Form -->
+        <div class="card animate-in" style="max-width:700px; margin:0 auto;">
+            <h2 class="card-title"><span class="icon">💸</span> Donate to Campaign</h2>
+
+            <div class="form-group">
+                <label class="form-label">Select Campaign</label>
+                <select id="campaignSelect">
+                    <option value="">— Connect wallet to load campaigns —</option>
+                </select>
+            </div>
+
+            <!-- Campaign Preview (dynamic) -->
+            <div id="campaignPreview" class="hidden" style="margin-bottom:16px;"></div>
+
+            <div class="form-group">
+                <label class="form-label">Donation Amount (ETH)</label>
+                <input type="number" id="donationAmount" placeholder="e.g. 0.01" step="0.001" min="0">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Message (optional)</label>
+                <textarea id="donorMessage" rows="2" placeholder="Leave a message for the campaign..."></textarea>
+            </div>
+
+            <button class="btn btn-primary btn-full" id="donateBtn">💸 Donate via MetaMask</button>
+
+            <div id="donateStatus" class="status hidden"></div>
+        </div>
+
+        <!-- Info Card -->
+        <div class="card animate-in" style="max-width:700px; margin:24px auto 0; animation-delay:0.2s;">
+            <h2 class="card-title"><span class="icon">ℹ️</span> How Donations Work</h2>
+            <div style="font-size:0.88rem; color:var(--text-secondary); line-height:1.7;">
+                <p>1. Select an active campaign from the dropdown (loaded from blockchain)</p>
+                <p>2. Enter the amount in ETH you want to donate</p>
+                <p>3. Click "Donate via MetaMask" — MetaMask will ask you to confirm the transaction</p>
+                <p>4. After confirmation, your donation is recorded on-chain permanently</p>
+                <p>5. View your transaction on <a href="https://sepolia.etherscan.io" target="_blank">Sepolia Etherscan</a></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer>
+        <p class="footer-brand">⛓️ DonateChain — Blockchain Donation System</p>
+        <p class="footer-sub">Built on Ethereum (Sepolia) | Smart Contracts + DAO Governance + IPFS</p>
+        <p class="footer-tech">T.Y. B.Tech Computer Engineering — Blockchain Technology Lab, Sem 6</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@4.5.0/dist/web3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
